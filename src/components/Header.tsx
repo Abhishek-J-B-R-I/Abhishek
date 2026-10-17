@@ -2,128 +2,169 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Terminal } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { Menu, X, Download, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 import { usePortfolio } from '@/context/PortfolioContext';
 
 export function Header() {
   const { data } = usePortfolio();
+  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+      for (const s of sections) {
+        const el = document.getElementById(s);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 140 && rect.bottom >= 140) {
+            setActiveSection(s);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on Esc key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileMenuOpen(false);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' },
+    { id: 'hero', label: 'Home', href: '#hero' },
+    { id: 'about', label: 'About', href: '#about' },
+    { id: 'skills', label: 'Skills', href: '#skills' },
+    { id: 'projects', label: 'Projects', href: '#projects' },
+    { id: 'experience', label: 'Experience', href: '#experience' },
+    { id: 'education', label: 'Education', href: '#education' },
+    { id: 'contact', label: 'Contact', href: '#contact' },
   ];
 
   return (
     <>
-      {/* Accessible skip link */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none"
-      >
-        Skip to main content
-      </a>
-
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-200 border-b ${
+        className={`sticky top-0 z-50 w-full transition-all duration-200 ${
           scrolled
-            ? 'bg-page-surface/90 backdrop-blur-md border-border shadow-soft'
-            : 'bg-page/80 backdrop-blur-sm border-transparent'
+            ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm border-b border-border/80'
+            : 'bg-page/80 backdrop-blur-sm border-b border-transparent'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Brand Wordmark */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          {/* Brand Wordmark with stylized 'A' icon */}
           <Link
             href="#hero"
-            className="flex items-center gap-2.5 text-ink hover:text-brand transition-colors group focus-visible:outline-brand"
-            aria-label="Abhishek - Home"
+            className="flex items-center gap-2.5 text-slate-900 dark:text-white group focus-visible:outline-brand"
+            aria-label="Abhishek Portfolio"
           >
-            <div className="w-8 h-8 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand group-hover:scale-105 transition-transform duration-200">
-              <Terminal className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+              A
             </div>
-            <span className="font-semibold text-lg tracking-tight text-ink">
-              {data.profile.name || 'Abhishek'}
-              <span className="text-brand font-mono text-sm ml-1">.dev</span>
+            <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+              Abhishek
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Center Pill Navigation */}
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-ink-muted"
+            className="hidden lg:flex items-center gap-1 bg-white/95 dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700/80 rounded-full px-3 py-1.5 shadow-sm"
           >
-            {navLinks.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="px-3 py-1.5 rounded-md hover:text-brand hover:bg-page-surface transition-colors duration-150"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-semibold shadow-xs'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Actions: Theme Toggle & Mobile Menu Trigger */}
+          {/* Right Action Controls: Pill Theme Switcher + Resume Button */}
           <div className="flex items-center gap-3">
-            <ThemeToggle />
-
-            {/* Mobile Hamburger Button */}
+            {/* Sleek Pill Theme Switch */}
             <button
               type="button"
-              id="mobile-nav-toggle"
+              id="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="relative inline-flex items-center w-14 h-7 p-0.5 rounded-full bg-slate-200 dark:bg-slate-700 transition-colors duration-200 focus:outline-none cursor-pointer"
+            >
+              <div
+                className={`w-6 h-6 rounded-full bg-white dark:bg-slate-900 shadow-md transform transition-transform duration-200 flex items-center justify-center ${
+                  theme === 'dark' ? 'translate-x-7' : 'translate-x-0'
+                }`}
+              >
+                {theme === 'dark' ? (
+                  <Moon className="w-3.5 h-3.5 text-indigo-400" />
+                ) : (
+                  <Sun className="w-3.5 h-3.5 text-amber-500" />
+                )}
+              </div>
+            </button>
+
+            {/* Resume Button */}
+            <a
+              href={data.profile.resume_url || '#contact'}
+              target={data.profile.resume_url ? '_blank' : '_self'}
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-md shadow-indigo-600/25 transition-all duration-200"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download Resume</span>
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-border bg-page-surface text-ink hover:bg-page-cardHover focus:outline-none"
+              className="lg:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               aria-expanded={mobileMenuOpen}
-              aria-label="Toggle navigation menu"
+              aria-label="Toggle navigation"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Dropdown Panel */}
         {mobileMenuOpen && (
-          <div
-            id="mobile-nav-panel"
-            className="md:hidden border-b border-border bg-page-surface/98 backdrop-blur-lg px-4 pt-3 pb-6 shadow-hover animate-fadeIn"
-          >
-            <nav className="flex flex-col gap-1.5" aria-label="Mobile Navigation">
+          <div className="lg:hidden bg-white/98 dark:bg-slate-900/98 backdrop-blur-xl border-b border-border px-4 pt-3 pb-6 shadow-xl animate-fadeIn">
+            <nav className="flex flex-col gap-1.5">
               {navLinks.map((item) => (
                 <a
-                  key={item.href}
+                  key={item.id}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-lg text-base font-medium text-ink hover:text-brand hover:bg-page-cardHover transition-colors"
+                  className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                    activeSection === item.id
+                      ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold'
+                      : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
                 >
                   {item.label}
                 </a>
               ))}
-              <div className="pt-3 mt-2 border-t border-border flex items-center justify-between text-xs text-ink-muted">
-                <span>{data.profile.location}</span>
-                <span className="text-brand font-mono">Flutter & Backend</span>
+              <div className="pt-3 mt-2 border-t border-border">
+                <a
+                  href={data.profile.resume_url || '#contact'}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Resume</span>
+                </a>
               </div>
             </nav>
           </div>

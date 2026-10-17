@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Copy, Check, ExternalLink, ArrowUp, Send } from 'lucide-react';
+import { Send, Mail, Copy, Check, ArrowRight, MapPin, Phone, ExternalLink } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
 
 export function Contact() {
@@ -16,99 +16,99 @@ export function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="py-16 md:py-24 border-t border-border bg-page-surface/40">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs uppercase font-mono tracking-wider text-brand font-semibold mb-2">
-            Get in Touch
-          </p>
-          <h2 id="contact-heading" className="text-3xl sm:text-4xl font-bold tracking-tight text-ink mb-4">
-            Let&apos;s Connect
-          </h2>
-          <p className="text-base sm:text-lg text-ink-muted leading-relaxed mb-8">
-            Interested in discussing Flutter development, full-stack application architecture, or engineering opportunities? Reach out directly.
-          </p>
-
-          {/* Large Tap Target Direct Email Card */}
-          <div className="p-6 sm:p-8 rounded-2xl border border-border bg-page-surface shadow-subtle mb-10 max-w-xl mx-auto flex flex-col items-center">
-            <div className="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
-              <Mail className="w-6 h-6" />
+    <section id="contact" aria-labelledby="contact-heading" className="py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Let's Build Something Amazing CTA Banner from Mockup */}
+        <div className="rounded-3xl bg-gradient-to-r from-indigo-50/90 via-purple-50/60 to-indigo-50/90 dark:from-slate-800 dark:via-indigo-950/40 dark:to-slate-800 border border-indigo-100 dark:border-slate-700/80 shadow-card p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/30 shrink-0 hidden sm:flex">
+              <Send className="w-5 h-5 -rotate-12" />
             </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                Let&apos;s Build Something Amazing
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                I&apos;m always open to discussing new projects, opportunities or ideas.
+              </p>
+            </div>
+          </div>
 
-            <p className="text-xs text-ink-subtle uppercase tracking-wider font-mono mb-1">
-              Direct Contact
-            </p>
+          <a
+            href={`mailto:${profile.email}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-xs sm:text-sm text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-md shadow-indigo-600/25 transition-all duration-200 shrink-0"
+          >
+            <span>Get In Touch</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* Contact Details Card */}
+        <div className="bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-700/80 shadow-card p-6 sm:p-8 max-w-2xl mx-auto text-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mx-auto mb-4">
+            <Mail className="w-6 h-6" />
+          </div>
+
+          <h2 id="contact-heading" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
+            Get in Touch Directly
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">
+            Feel free to email me regarding mobile applications, Flutter consulting, or roles.
+          </p>
+
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 p-2 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 mb-6">
             <a
               href={`mailto:${profile.email}`}
-              className="text-lg sm:text-xl font-bold text-ink hover:text-brand transition-colors mb-6 break-all"
+              className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-1.5 transition-colors"
             >
               {profile.email}
             </a>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 w-full">
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-white bg-brand hover:bg-brand-hover shadow-soft transition-all duration-200 active:scale-95 flex-1 min-w-[160px]"
-              >
-                <Send className="w-4 h-4" />
-                <span>Send Email</span>
-              </a>
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 shadow-xs transition-all cursor-pointer"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-500" />
+                  <span className="text-emerald-600 dark:text-emerald-400">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
+          </div>
 
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium text-ink bg-page hover:bg-page-cardHover border border-border transition-all duration-200 active:scale-95 cursor-pointer"
-                title="Copy email to clipboard"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-500" />
-                    <span className="text-emerald-600 dark:text-emerald-400">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 text-ink-muted" />
-                    <span>Copy</span>
-                  </>
-                )}
-              </button>
+          {/* Location and Phone */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-400">
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              <span>{profile.location}</span>
             </div>
 
-            {/* Optional Phone if visible in sheet */}
             {profile.phone && (
-              <div className="mt-6 pt-4 border-t border-border/70 flex items-center justify-center gap-2 text-sm text-ink-muted">
-                <Phone className="w-4 h-4 text-brand" />
-                <a
-                  href={`tel:${profile.phone.replace(/\s+/g, '')}`}
-                  className="hover:text-brand font-mono transition-colors"
-                >
+              <div className="flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} className="hover:text-indigo-600">
                   {profile.phone}
                 </a>
               </div>
             )}
-          </div>
-
-          {/* Social Profiles & Location */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-ink-muted mb-8">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-brand" />
-              <span>{profile.location}</span>
-            </div>
 
             {profile.github_url && (
               <a
                 href={profile.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand transition-colors"
+                className="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors"
               >
                 <span>GitHub</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3 h-3" />
               </a>
             )}
 
@@ -117,24 +117,12 @@ export function Contact() {
                 href={profile.linkedin_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand transition-colors"
+                className="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors"
               >
                 <span>LinkedIn</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3 h-3" />
               </a>
             )}
-          </div>
-
-          {/* Back to top button */}
-          <div>
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-medium text-ink-muted hover:text-ink bg-page border border-border hover:border-brand/40 transition-colors cursor-pointer"
-            >
-              <ArrowUp className="w-3.5 h-3.5 text-brand" />
-              <span>Back to top</span>
-            </button>
           </div>
         </div>
       </div>

@@ -54,40 +54,25 @@ The application follows the UI/UX design tokens specified in the System Design b
 
 ---
 
-## 📊 Google Sheets CMS Publishing Workflow
+## 📊 Live Google Sheet CMS Connection
 
-You can update your portfolio content anytime without editing code:
+Your portfolio is **pre-connected directly** to your live Google Sheet:
+`https://docs.google.com/spreadsheets/d/1ABhdnsxFKHu87b8VozXfzVEte9pMs2Qk/edit`
 
-### Step 1: Import the Template into Google Sheets
-1. Open Google Sheets ([sheets.google.com](https://sheets.google.com)).
-2. Create a new spreadsheet and import `abhishek_portfolio_google_sheets_template.xlsx`.
-3. The workbook contains the tabs: `Profile`, `Sections`, `Skills`, `Experience`, `Projects`, `Education`, and `CustomSections`.
+### How It Works
+- **CORS-Proof Real-Time Updates**: When visitors open your website (or refresh the page), the browser asynchronously reads your Google Sheet via the Google Visualization API. Any edits you make in Google Sheets reflect automatically on the live site!
+- **Show / Hide Control**:
+  - Set the **Visibility** column to **`Show`** (or `visible`) to display an item on your site.
+  - Set it to **`Hide`** (or leave it blank) to hide it.
+- **Offline / Build-Time Safety**: The site builds with your current sheet data pre-rendered into static HTML (`out/index.html`). If Google's servers are ever slow or offline, your portfolio still renders instantly with zero layout shifts.
 
-### Step 2: Publish to Web
-1. In your Google Sheet, click **File** > **Share** > **Publish to web**.
-2. Under "Link", select **Entire Document** or each tab individually, and select format: **Comma-separated values (.csv)**.
-3. Click **Publish**.
-
-### Step 3: Configure the Portfolio
-Open `src/config/sheets.ts` (or set environment variables in your deployment / `.env.local`):
-
-```ts
-export const sheetConfig: SheetConfig = {
-  enabled: true, // Set to true to enable live revalidation
-  tabUrls: {
-    profile: "https://docs.google.com/spreadsheets/d/e/<SPREADSHEET_ID>/pub?gid=0&single=true&output=csv",
-    skills: "https://docs.google.com/spreadsheets/d/e/<SPREADSHEET_ID>/pub?gid=<GID>&single=true&output=csv",
-    experience: "https://docs.google.com/spreadsheets/d/e/<SPREADSHEET_ID>/pub?gid=<GID>&single=true&output=csv",
-    projects: "https://docs.google.com/spreadsheets/d/e/<SPREADSHEET_ID>/pub?gid=<GID>&single=true&output=csv",
-    education: "https://docs.google.com/spreadsheets/d/e/<SPREADSHEET_ID>/pub?gid=<GID>&single=true&output=csv",
-  },
-};
-```
-
-### Visibility & Data Integrity Rules
-- **Fail-Closed Rule**: A row is rendered **only** when its `status` (or `visible`) cell is set to `visible` or `VISIBLE`. Rows set to `hidden`, left blank, or containing any other string are excluded.
-- **Ordering**: The `sort_order` (or `order`) integer defines display sequence (lowest integer appears first).
-- **Security**: Never place sensitive passwords, API keys, or private phone numbers in the public sheet. All external links are validated to allow only safe `http://`, `https://`, and `mailto:` protocols.
+### Pre-Configured Tabs
+- **Profile**: Name, Professional Headline, Location, Email Address, Phone Number, Professional Summary, GitHub URL, LinkedIn URL, and Resume URL.
+- **Sections**: Show or hide entire sections (`Hero`, `About`, `Skills`, `Experience`, `Projects`, `Education`, `Contact`).
+- **Skills**: Individual skill rows categorized by *Languages*, *Core Computer Science*, *Backend & Networking*, *Databases*, *Application Development*, *Tools & Practices*, and *AI-assisted Development*.
+- **Experience**: Structured roles (*VCQRU — Associate Software Engineer*, *VCQRU — Flutter Intern*) with individual responsibility bullets.
+- **Projects**: Project cards (*Loyalty Rewards App*, *Real-Time Chat App*, *Weather Forecast App*) with live/repo URL controls.
+- **Education**: Degree, Institution, and Graduation Year.
 
 ---
 

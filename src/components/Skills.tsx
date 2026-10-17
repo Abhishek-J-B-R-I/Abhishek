@@ -1,127 +1,78 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Layers, Code2, Database, Terminal, Cpu, Layout, Server, Wrench } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import {
+  FlutterIcon,
+  DartIcon,
+  FirebaseIcon,
+  NodeIcon,
+  PythonIcon,
+  ReactIcon,
+  MysqlIcon,
+  RestApiIcon,
+} from './TechIcons';
 
-const groupIcons: Record<string, React.ElementType> = {
-  'Languages': Code2,
-  'Mobile Development': Layers,
-  'State Management': Layout,
-  'Backend & Networking': Server,
-  'Databases': Database,
-  'Additional Development': Terminal,
-  'Core Computer Science': Cpu,
-  'Tools & Practices': Wrench,
-};
+interface SkillVisual {
+  name: string;
+  icon: React.ElementType;
+}
+
+const featuredSkills: SkillVisual[] = [
+  { name: 'Flutter', icon: FlutterIcon },
+  { name: 'Dart', icon: DartIcon },
+  { name: 'Firebase', icon: FirebaseIcon },
+  { name: 'REST APIs', icon: RestApiIcon },
+  { name: 'Node.js', icon: NodeIcon },
+  { name: 'Python', icon: PythonIcon },
+  { name: 'React.js', icon: ReactIcon },
+  { name: 'MySQL', icon: MysqlIcon },
+];
 
 export function Skills() {
   const { data } = usePortfolio();
-  const { skills } = data;
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-
-  // Extract unique categories in order
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    skills.forEach((s) => set.add(s.group));
-    return ['All', ...Array.from(set)];
-  }, [skills]);
-
-  // Group filtered skills
-  const groupedSkills = useMemo(() => {
-    const filtered =
-      selectedCategory === 'All'
-        ? skills
-        : skills.filter((s) => s.group === selectedCategory);
-
-    const record: Record<string, typeof skills> = {};
-    for (const skill of filtered) {
-      if (!record[skill.group]) {
-        record[skill.group] = [];
-      }
-      record[skill.group].push(skill);
-    }
-    return record;
-  }, [skills, selectedCategory]);
 
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="py-16 md:py-20 border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-8 max-w-2xl">
-          <p className="text-xs uppercase font-mono tracking-wider text-brand font-semibold mb-2">
-            Technical Proficiency
-          </p>
-          <h2 id="skills-heading" className="text-3xl font-bold tracking-tight text-ink mb-3">
-            Skills & Technologies
+    <div className="flex flex-col justify-between">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Technical Skills
           </h2>
-          <p className="text-sm sm:text-base text-ink-muted">
-            Specialized in Flutter cross-platform architecture, reactive state management, and backend-integrated workflows.
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            Technologies and tools I work with
           </p>
         </div>
-
-        {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-10 pb-2">
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 cursor-pointer ${
-                  isActive
-                    ? 'bg-brand text-white shadow-soft'
-                    : 'bg-page-surface text-ink-muted border border-border hover:text-ink hover:border-brand/40'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Grouped Skills Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(groupedSkills).map(([groupName, groupItems]) => {
-            const Icon = groupIcons[groupName] || Terminal;
-            return (
-              <div
-                key={groupName}
-                className="p-5 rounded-xl border border-border bg-page-surface shadow-soft flex flex-col justify-between hover:border-brand/30 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-border/80">
-                    <div className="w-8 h-8 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-ink tracking-tight">
-                      {groupName}
-                    </h3>
-                  </div>
-
-                  {/* Wrapped skill chips */}
-                  <div className="flex flex-wrap gap-2">
-                    {groupItems.map((skill) => (
-                      <span
-                        key={skill.skill_id}
-                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-page/90 text-ink border border-border hover:border-brand/40 hover:text-brand transition-colors"
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-3 text-[11px] text-ink-subtle flex items-center justify-between">
-                  <span>{groupItems.length} {groupItems.length === 1 ? 'skill' : 'skills'}</span>
-                  <span className="font-mono text-brand/80">verified</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <a
+          href="#contact"
+          className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 flex items-center gap-1"
+        >
+          <span>View All Skills</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </a>
       </div>
-    </section>
+
+      {/* Grid of 8 Featured Tech Cards */}
+      <div className="grid grid-cols-4 gap-3 sm:gap-4">
+        {featuredSkills.map((skill, idx) => {
+          const Icon = skill.icon;
+          return (
+            <div
+              key={idx}
+              className="bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-700/80 p-3 sm:p-4 flex flex-col items-center justify-center gap-2 shadow-card hover:shadow-cardHover hover:-translate-y-1 transition-all duration-200 group"
+            >
+              <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                <Icon className="w-8 h-8 sm:w-9 sm:h-9" />
+              </div>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200 text-center truncate w-full">
+                {skill.name}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
