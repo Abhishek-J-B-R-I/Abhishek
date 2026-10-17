@@ -1,0 +1,405 @@
+{
+  "Profile": [
+    {
+      "key": "name",
+      "value": "Abhishek",
+      "status": "visible",
+      "notes": "Edit as needed"
+    },
+    {
+      "key": "headline",
+      "value": "Software Engineer | Flutter & Backend-Integrated Application Development",
+      "status": "visible",
+      "notes": "Main hero headline"
+    },
+    {
+      "key": "location",
+      "value": "Gurugram, India",
+      "status": "visible",
+      "notes": "Public location"
+    },
+    {
+      "key": "email",
+      "value": "abhishekjbri@gmail.com",
+      "status": "visible",
+      "notes": "Public contact; change if needed"
+    },
+    {
+      "key": "phone",
+      "value": "+91 8299398980",
+      "status": "visible",
+      "notes": "Public contact; set status=hidden to hide"
+    },
+    {
+      "key": "summary",
+      "value": "Software engineer with 2+ years of experience building and maintaining production applications end to end, from UI to REST API and cloud backend integration.",
+      "status": "visible",
+      "notes": "Short hero/about summary; full summary can be expanded"
+    },
+    {
+      "key": "availability_text",
+      "value": "Open to relevant opportunities",
+      "status": "hidden",
+      "notes": "Only show if accurate"
+    },
+    {
+      "key": "resume_url",
+      "value": "",
+      "status": "hidden",
+      "notes": "Paste a public resume URL if you want a download link"
+    },
+    {
+      "key": "github_url",
+      "value": "",
+      "status": "hidden",
+      "notes": "Add your profile URL"
+    },
+    {
+      "key": "linkedin_url",
+      "value": "",
+      "status": "hidden",
+      "notes": "Add your profile URL"
+    }
+  ],
+  "Sections": [
+    {
+      "section_id": "hero",
+      "title": "Home",
+      "status": "visible",
+      "sort_order": "1",
+      "layout": "hero",
+      "notes": "Top of page"
+    },
+    {
+      "section_id": "about",
+      "title": "About",
+      "status": "visible",
+      "sort_order": "2",
+      "layout": "text",
+      "notes": "Profile summary"
+    },
+    {
+      "section_id": "skills",
+      "title": "Technical Skills",
+      "status": "visible",
+      "sort_order": "3",
+      "layout": "skills",
+      "notes": "Grouped skill chips"
+    },
+    {
+      "section_id": "experience",
+      "title": "Experience",
+      "status": "visible",
+      "sort_order": "4",
+      "layout": "timeline",
+      "notes": "Professional experience"
+    },
+    {
+      "section_id": "projects",
+      "title": "Featured Projects",
+      "status": "visible",
+      "sort_order": "5",
+      "layout": "project_cards",
+      "notes": "Project cards"
+    },
+    {
+      "section_id": "education",
+      "title": "Education",
+      "status": "visible",
+      "sort_order": "6",
+      "layout": "timeline",
+      "notes": "Education history"
+    },
+    {
+      "section_id": "contact",
+      "title": "Contact",
+      "status": "visible",
+      "sort_order": "7",
+      "layout": "contact",
+      "notes": "Email/phone/social links"
+    }
+  ],
+  "Skills": [
+    {
+      "skill_id": "lang-dart",
+      "group": "Languages",
+      "name": "Dart",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "lang-python",
+      "group": "Languages",
+      "name": "Python",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "lang-java",
+      "group": "Languages",
+      "name": "Java",
+      "status": "visible",
+      "sort_order": "3"
+    },
+    {
+      "skill_id": "lang-cpp",
+      "group": "Languages",
+      "name": "C/C++",
+      "status": "visible",
+      "sort_order": "4"
+    },
+    {
+      "skill_id": "mobile-flutter",
+      "group": "Mobile Development",
+      "name": "Flutter",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "state-bloc",
+      "group": "State Management",
+      "name": "BLoC",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "state-provider",
+      "group": "State Management",
+      "name": "Provider",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "api-rest",
+      "group": "Backend & Networking",
+      "name": "REST APIs",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "api-http",
+      "group": "Backend & Networking",
+      "name": "HTTP / JSON",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "firebase-auth",
+      "group": "Backend & Networking",
+      "name": "Firebase Auth",
+      "status": "visible",
+      "sort_order": "3"
+    },
+    {
+      "skill_id": "firebase-firestore",
+      "group": "Backend & Networking",
+      "name": "Firestore",
+      "status": "visible",
+      "sort_order": "4"
+    },
+    {
+      "skill_id": "firebase-fcm",
+      "group": "Backend & Networking",
+      "name": "Firebase Cloud Messaging",
+      "status": "visible",
+      "sort_order": "5"
+    },
+    {
+      "skill_id": "db-mysql",
+      "group": "Databases",
+      "name": "MySQL",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "db-mongodb",
+      "group": "Databases",
+      "name": "MongoDB",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "web-react",
+      "group": "Additional Development",
+      "name": "React.js",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "tool-git",
+      "group": "Tools & Practices",
+      "name": "Git",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "tool-debugging",
+      "group": "Tools & Practices",
+      "name": "Debugging & Troubleshooting",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "tool-code-review",
+      "group": "Tools & Practices",
+      "name": "Code Review",
+      "status": "visible",
+      "sort_order": "3"
+    },
+    {
+      "skill_id": "tool-dsa",
+      "group": "Core Computer Science",
+      "name": "Data Structures & Algorithms",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "skill_id": "tool-oop",
+      "group": "Core Computer Science",
+      "name": "OOP",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "skill_id": "tool-dbms",
+      "group": "Core Computer Science",
+      "name": "DBMS",
+      "status": "visible",
+      "sort_order": "3"
+    },
+    {
+      "skill_id": "backend-node",
+      "group": "Backend & Networking",
+      "name": "Node.js",
+      "status": "visible",
+      "sort_order": "6"
+    },
+    {
+      "skill_id": "backend-django-flask",
+      "group": "Backend & Networking",
+      "name": "Django / Flask",
+      "status": "visible",
+      "sort_order": "7"
+    },
+    {
+      "skill_id": "python-automation",
+      "group": "Additional Development",
+      "name": "Windows Desktop Automation (Python)",
+      "status": "visible",
+      "sort_order": "2"
+    }
+  ],
+  "Experience": [
+    {
+      "experience_id": "vcqru-associate",
+      "role": "Associate Software Engineer (Flutter)",
+      "company": "VCQRU",
+      "location": "Gurugram",
+      "start_date": "2025-03",
+      "end_date": "Present",
+      "status": "visible",
+      "sort_order": "1",
+      "description": "Develop and maintain production applications end to end across UI, business logic and backend integration; own smaller modules and bug fixes."
+    },
+    {
+      "experience_id": "vcqru-associate-api",
+      "role": "Associate Software Engineer (Flutter)",
+      "company": "VCQRU",
+      "location": "Gurugram",
+      "start_date": "2025-03",
+      "end_date": "Present",
+      "status": "visible",
+      "sort_order": "2",
+      "description": "Integrate REST APIs and Firebase services for authentication, payment processing and push notifications."
+    },
+    {
+      "experience_id": "vcqru-associate-state",
+      "role": "Associate Software Engineer (Flutter)",
+      "company": "VCQRU",
+      "location": "Gurugram",
+      "start_date": "2025-03",
+      "end_date": "Present",
+      "status": "visible",
+      "sort_order": "3",
+      "description": "Apply BLoC and Provider state management; built a React.js dashboard and a Python-based Windows automation tool."
+    },
+    {
+      "experience_id": "vcqru-intern",
+      "role": "Flutter Intern (UI/UX)",
+      "company": "VCQRU",
+      "location": "Gurugram",
+      "start_date": "2024-08",
+      "end_date": "2025-03",
+      "status": "visible",
+      "sort_order": "4",
+      "description": "Translated design mockups into Flutter interfaces, fixed UI bugs and worked in Git-based workflows."
+    }
+  ],
+  "Projects": [
+    {
+      "project_id": "loyalty-rewards",
+      "title": "Loyalty Rewards App",
+      "subtitle": "Flutter \u2022 Firebase \u2022 REST API",
+      "description": "Built an app where users scan QR codes to earn loyalty points and redeem rewards, including point-calculation logic and the claim/redemption flow.",
+      "technologies": "Flutter, Firebase, REST API",
+      "image_url": "",
+      "live_url": "",
+      "repo_url": "",
+      "status": "visible",
+      "sort_order": "1"
+    },
+    {
+      "project_id": "realtime-chat",
+      "title": "Real-Time Chat App",
+      "subtitle": "Flutter \u2022 Firebase",
+      "description": "Developed one-to-one messaging with real-time message synchronization and persistent storage using Firebase.",
+      "technologies": "Flutter, Firebase",
+      "image_url": "",
+      "live_url": "",
+      "repo_url": "",
+      "status": "visible",
+      "sort_order": "2"
+    },
+    {
+      "project_id": "weather-forecast",
+      "title": "Weather Forecast App",
+      "subtitle": "Flutter \u2022 REST API",
+      "description": "Integrated a live weather API, parsing JSON responses to show temperature, conditions and forecasts for searched cities.",
+      "technologies": "Flutter, REST API, JSON",
+      "image_url": "",
+      "live_url": "",
+      "repo_url": "",
+      "status": "visible",
+      "sort_order": "3"
+    }
+  ],
+  "Education": [
+    {
+      "education_id": "mca-gurugram",
+      "degree": "Master of Computer Applications (MCA)",
+      "institution": "Gurugram University",
+      "year": "2025",
+      "details": "",
+      "status": "visible",
+      "sort_order": "1"
+    }
+  ],
+  "CustomSections": [
+    {
+      "item_id": "achievement-1",
+      "section_id": "achievements",
+      "title": "Achievements",
+      "content": "Add verified achievements here; remove or hide this sample row if unused.",
+      "status": "hidden",
+      "sort_order": "1"
+    },
+    {
+      "item_id": "certification-1",
+      "section_id": "certifications",
+      "title": "Certifications",
+      "content": "Add certification name and details only if applicable.",
+      "status": "hidden",
+      "sort_order": "1"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode (Default) */
+  --bg-page: #F8F9FC;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F3F5FB;
+  --text-primary: #172033;
+  --text-muted: #596579;
+  --text-subtle: #79869C;
+  --color-accent: #315FEA;
+  --color-accent-hover: #224CCB;
+  --color-accent-teal: #0EA5E9;
+  --color-accent-glow: rgba(49, 95, 234, 0.12);
+  --border-color: #DCE2EC;
+  --border-subtle: #EDF2F7;
+}
+
+.dark {
+  /* Dark mode */
+  --bg-page: #0D111B;
+  --bg-surface: #151C2B;
+  --bg-card: #151C2B;
+  --bg-card-hover: #1D263B;
+  --text-primary: #F3F5FA;
+  --text-muted: #A8B2C4;
+  --text-subtle: #67758D;
+  --color-accent: #7895FF;
+  --color-accent-hover: #9bb0ff;
+  --color-accent-teal: #38BDF8;
+  --color-accent-glow: rgba(120, 149, 255, 0.18);
+  --border-color: #2B3446;
+  --border-subtle: #1C2434;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+/* Custom focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Text selection */
+::selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* Subtle grid backdrop for hero */
+.hero-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(220, 226, 236, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(220, 226, 236, 0.45) 1px, transparent 1px);
+}
+
+.dark .hero-grid {
+  background-image: 
+    linear-gradient(to right, rgba(43, 52, 70, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(43, 52, 70, 0.4) 1px, transparent 1px);
+}
