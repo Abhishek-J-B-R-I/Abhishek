@@ -3,40 +3,22 @@
 @tailwind utilities;
 
 :root {
-  /* Light mode (Matching Mockup) */
-  --bg-page: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #F8FAFC;
-  --text-primary: #0F172A;
-  --text-muted: #64748B;
-  --text-subtle: #94A3B8;
-  --color-accent: #4F46E5;
-  --color-accent-hover: #4338CA;
-  --color-accent-light: #EEF2FF;
-  --border-color: #E2E8F0;
-  --border-subtle: #F1F5F9;
-}
-
-.dark {
-  /* Dark mode */
-  --bg-page: #0B0F19;
-  --bg-surface: #111827;
-  --bg-card: #141E33;
-  --bg-card-hover: #1E293B;
+  --bg-page: #080C15;
+  --bg-surface: #0E1628;
+  --bg-card: #0E1628;
+  --bg-card-hover: #131E38;
   --text-primary: #F8FAFC;
   --text-muted: #94A3B8;
   --text-subtle: #64748B;
   --color-accent: #6366F1;
-  --color-accent-hover: #818CF8;
-  --color-accent-light: #1E1B4B;
-  --border-color: #1E293B;
-  --border-subtle: #172033;
+  --border-color: #1A253C;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 2rem;
+  background-color: #080C15;
+  color: #F8FAFC;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -56,31 +38,190 @@ html {
 }
 
 body {
-  background-color: var(--bg-page);
-  color: var(--text-primary);
+  background-color: #080C15;
+  color: #F8FAFC;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
-  transition: background-color 0.25s ease, color 0.25s ease;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080C15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
 
 /* Accessible focus visible */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid #00D2FF;
   outline-offset: 3px;
   border-radius: 6px;
 }
 
-/* Text selection */
+/* Selection */
 ::selection {
-  background-color: var(--color-accent);
+  background-color: #6366F1;
   color: #FFFFFF;
 }
 
-/* Soft ambient glow effect for hero */
-.hero-glow {
-  background: radial-gradient(circle at 75% 35%, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.08) 35%, transparent 70%);
+/* Futuristic Ambient Neon Glows */
+.ambient-glow {
+  background: 
+    radial-gradient(ellipse 80% 50% at 70% 15%, rgba(99, 102, 241, 0.15), transparent 60%),
+    radial-gradient(circle at 10% 90%, rgba(6, 182, 212, 0.12), transparent 50%),
+    radial-gradient(circle at 90% 85%, rgba(168, 85, 247, 0.18), transparent 50%);
 }
 
-.dark .hero-glow {
-  background: radial-gradient(circle at 75% 35%, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.12) 35%, transparent 70%);
+/* Neon Glow Card with Soft Slow-Motion Hover Animation */
+.neon-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(14, 22, 40, 0.88) 0%, rgba(10, 15, 28, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  transition: border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: border-color, box-shadow, transform;
 }
+
+
+
+/* Mouse Tracking Spotlight Ambient Layer */
+.neon-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(168, 85, 247, 0.15),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.neon-card:hover::after {
+  opacity: 1;
+}
+
+/* Default Neon Card Hover (Soft Slow Motion) */
+.neon-card:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 
+    0 14px 40px -4px rgba(0, 0, 0, 0.7),
+    0 0 28px 2px rgba(168, 85, 247, 0.22),
+    inset 0 0 20px 0 rgba(168, 85, 247, 0.08);
+  background: linear-gradient(135deg, rgba(18, 27, 48, 0.92) 0%, rgba(12, 18, 34, 0.98) 100%);
+}
+
+/* Card-Specific Tailored Neon Accents */
+.neon-card-purple:hover {
+  border-color: rgba(168, 85, 247, 0.75);
+  box-shadow: 
+    0 16px 44px -4px rgba(0, 0, 0, 0.75),
+    0 0 32px 3px rgba(168, 85, 247, 0.28),
+    inset 0 0 24px rgba(168, 85, 247, 0.1);
+}
+
+.neon-card-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.75);
+  box-shadow: 
+    0 16px 44px -4px rgba(0, 0, 0, 0.75),
+    0 0 32px 3px rgba(6, 182, 212, 0.28),
+    inset 0 0 24px rgba(6, 182, 212, 0.1);
+}
+
+.neon-card-indigo:hover {
+  border-color: rgba(99, 102, 241, 0.75);
+  box-shadow: 
+    0 16px 44px -4px rgba(0, 0, 0, 0.75),
+    0 0 32px 3px rgba(99, 102, 241, 0.28),
+    inset 0 0 24px rgba(99, 102, 241, 0.1);
+}
+
+.neon-card-blue:hover {
+  border-color: rgba(56, 189, 248, 0.75);
+  box-shadow: 
+    0 16px 44px -4px rgba(0, 0, 0, 0.75),
+    0 0 32px 3px rgba(56, 189, 248, 0.28),
+    inset 0 0 24px rgba(56, 189, 248, 0.1);
+}
+
+.neon-card-pink:hover {
+  border-color: rgba(236, 72, 153, 0.75);
+  box-shadow: 
+    0 16px 44px -4px rgba(0, 0, 0, 0.75),
+    0 0 32px 3px rgba(236, 72, 153, 0.28),
+    inset 0 0 24px rgba(236, 72, 153, 0.1);
+}
+
+/* Eye-Catching Contact Micro-Animations */
+@keyframes phone-ring {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  10%, 30% {
+    transform: rotate(-16deg) scale(1.15);
+  }
+  20%, 40% {
+    transform: rotate(16deg) scale(1.15);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.animate-phone-ring {
+  display: inline-block;
+  animation: phone-ring 2.4s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes email-pulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.12);
+  }
+}
+
+.animate-email-pulse {
+  display: inline-block;
+  animation: email-pulse 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes pin-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.1);
+  }
+}
+
+.animate-pin-bounce {
+  display: inline-block;
+  animation: pin-bounce 2.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+

@@ -6,6 +6,7 @@ export const fallbackPortfolioData: PortfolioData = {
     "headline": "Software Engineer | Flutter & Backend-Integrated Application Development",
     "location": "Gurugram, India",
     "email": "abhishekjbri@gmail.com",
+    "phone": "+91 8299398980",
     "summary": "Software engineer with 2+ years of experience building and maintaining production applications end to end, from UI to REST API and cloud backend integration. Strong foundation in data structures, algorithms, OOP and DBMS, with working knowledge of C/C++, Java and Python. Experienced with real-time data synchronization, client-server communication over HTTP/REST, authentication, and payment and notification workflows. Comfortable owning modules and bug fixes independently, debugging production issues, and collaborating across cross-functional teams. Eager to grow into large-scale distributed systems and networking."
 },
   sections: [
