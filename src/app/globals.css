@@ -336,3 +336,168 @@ html.dark .neon-card::after {
   animation: pin-bounce 2.2s ease-in-out infinite;
   transform-origin: bottom center;
 }
+
+/* Floating Tech Icon Animations requested for space utilization */
+@keyframes tech-float-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+@keyframes tech-float-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-2.5deg);
+  }
+}
+
+@keyframes tech-float-3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+}
+
+@keyframes tech-glow-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.1);
+  }
+}
+
+.animate-tech-float-1 {
+  animation: tech-float-1 3.4s ease-in-out infinite;
+}
+
+.animate-tech-float-2 {
+  animation: tech-float-2 4.2s ease-in-out infinite 0.7s;
+}
+
+.animate-tech-float-3 {
+  animation: tech-float-3 3.8s ease-in-out infinite 1.4s;
+}
+
+.animate-tech-glow {
+  animation: tech-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Orbiting Tech Stack Keyframes for Intro Animation */
+@keyframes orbit-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-counter-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit-spin {
+  animation: orbit-spin 6s linear infinite;
+}
+
+.animate-orbit-spin-slow {
+  animation: orbit-spin 14s linear infinite;
+}
+
+.animate-orbit-counter-spin {
+  animation: orbit-counter-spin 6s linear infinite;
+}
+
+/* 3D Floating Mobile Phone Animations */
+@keyframes float-phone-left {
+  0%, 100% {
+    transform: rotate(-10deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(-12deg) translateY(-8px);
+  }
+}
+
+@keyframes float-phone-center {
+  0%, 100% {
+    transform: scale(1.05) translateY(0px);
+  }
+  50% {
+    transform: scale(1.08) translateY(-10px);
+  }
+}
+
+@keyframes float-phone-right {
+  0%, 100% {
+    transform: rotate(10deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(12deg) translateY(-8px);
+  }
+}
+
+.animate-float-phone-left {
+  animation: float-phone-left 3.5s ease-in-out infinite;
+}
+
+.animate-float-phone-center {
+  animation: float-phone-center 3s ease-in-out infinite 0.4s;
+}
+
+.animate-float-phone-right {
+  animation: float-phone-right 3.6s ease-in-out infinite 0.8s;
+}
+
+@keyframes checkmark-pop {
+  0% {
+    transform: scale(0.6) rotate(-15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-checkmark-pop {
+  animation: checkmark-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Silk-smooth tab transition animation */
+@keyframes tab-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-tab-enter {
+  animation: tab-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+

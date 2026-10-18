@@ -1,82 +1,45 @@
 'use client';
 
 import React from 'react';
-import { Smartphone, ShieldCheck, Zap, GitCommit } from 'lucide-react';
+import { TechAnimationCluster } from '@/components/TechAnimation';
 
 export function NeonQuote() {
-  const highlights = [
-    {
-      icon: Smartphone,
-      title: 'Production Flutter Apps',
-      desc: 'Pixel-perfect UI, responsive across phones, tablets & web.',
-      color: 'text-indigo-600 bg-indigo-50 border-indigo-200 dark:text-cyan-400 dark:bg-cyan-500/10 dark:border-cyan-500/20',
-    },
-    {
-      icon: Zap,
-      title: 'Real-Time Sync & APIs',
-      desc: 'Firebase, WebSockets, RESTful endpoints & JSON caching.',
-      color: 'text-blue-600 bg-blue-50 border-blue-200 dark:text-purple-400 dark:bg-purple-500/10 dark:border-purple-500/20',
-    },
-    {
-      icon: ShieldCheck,
-      title: 'Architecture & Testing',
-      desc: 'BLoC state management, Clean Architecture, unit testing.',
-      color: 'text-emerald-700 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20',
-    },
-    {
-      icon: GitCommit,
-      title: 'CI/CD & Iterative Delivery',
-      desc: 'Git version control, code reviews & release pipelines.',
-      color: 'text-pink-600 bg-pink-50 border-pink-200 dark:text-pink-400 dark:bg-pink-500/10 dark:border-pink-500/20',
-    },
-  ];
-
   return (
-    <div className="neon-card neon-card-purple rounded-2xl p-3 sm:p-3.5 h-full flex flex-col justify-between relative overflow-hidden group transition-all duration-300">
-      <div>
-        {/* Quote Headline */}
-        <div className="mb-2 pb-1.5 border-b border-slate-200 dark:border-slate-800/80">
-          <div className="flex items-center gap-1.5 text-indigo-600 dark:text-cyan-400 font-bold">
-            <span className="text-xl font-serif leading-none select-none group-hover:scale-125 transition-transform duration-500">“</span>
-            <h2 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-tight group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors duration-500">
+    <div className="neon-card neon-card-purple rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between h-full relative overflow-hidden group transition-all duration-300">
+      <div className="flex flex-col flex-1 justify-between">
+        {/* Quote Headline & Mobile Ecosystem Badge */}
+        <div className="mb-1.5 pb-1 border-b border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-1">
+          <div className="flex items-center gap-1.5 text-indigo-600 dark:text-cyan-400 font-bold min-w-0">
+            <span className="text-lg font-serif leading-none select-none group-hover:scale-125 transition-transform duration-500 shrink-0">“</span>
+            <h2 className="text-xs sm:text-[13px] font-black text-slate-900 dark:text-white leading-tight group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors duration-500 truncate">
               Turning Ideas Into{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 dark:from-purple-400 dark:via-pink-400 dark:to-indigo-400">
                 Real-World Applications
               </span>
             </h2>
           </div>
+
+          <span className="text-[8.5px] font-mono text-indigo-600 dark:text-cyan-400 font-semibold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-cyan-500/10 border border-indigo-200 dark:border-cyan-500/30 shrink-0">
+            Tech Ecosystem
+          </span>
         </div>
 
-        {/* 4 Engineering Capability Tiles */}
-        <div className="grid grid-cols-2 gap-1.5">
-          {highlights.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="p-1.5 rounded-xl bg-slate-50/90 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 group-hover:border-purple-300 dark:group-hover:border-slate-700/80 group-hover:bg-white dark:group-hover:bg-slate-900/90 hover:!border-purple-500 dark:hover:!border-cyan-400/60 hover:!bg-white dark:hover:!bg-slate-800/90 hover:scale-[1.03] hover:shadow-md dark:hover:shadow-[0_0_14px_rgba(6,182,212,0.25)] flex items-start gap-2 transition-all duration-300 cursor-default"
-              >
-                <div
-                  className={`w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${item.color} group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="w-2.5 h-2.5" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-[10px] font-bold text-slate-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-cyan-200 transition-colors duration-300 truncate">
-                    {item.title}
-                  </h3>
-                  <p className="text-[8.5px] text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-300 line-clamp-1 leading-tight transition-colors duration-300">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        {/* Dynamic Floating Tech Icon Animation Cluster (Firebase, Flutter, Kotlin, Swift, Apple/iOS, Dart, Android) */}
+        <div className="flex-1 my-1">
+          <TechAnimationCluster />
+        </div>
+
+        {/* Engineering Principles Ribbon */}
+        <div className="flex flex-wrap items-center justify-between gap-1 mt-1 pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[8.5px] font-mono text-slate-600 dark:text-slate-300">
+          <span className="px-1.5 py-0.5 rounded bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60">✦ BLoC Architecture</span>
+          <span className="px-1.5 py-0.5 rounded bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60">✦ Real-Time Sync</span>
+          <span className="px-1.5 py-0.5 rounded bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60">✦ Native iOS & Android</span>
+          <span className="px-1.5 py-0.5 rounded bg-slate-100/90 dark:bg-slate-800/70 border border-slate-200/60 dark:border-slate-700/60">✦ CI/CD Delivery</span>
         </div>
       </div>
 
       {/* Footer Pill */}
-      <div className="pt-1.5 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[9px] font-mono text-slate-500 dark:text-slate-400">
+      <div className="pt-1 mt-1 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[8.5px] font-mono text-slate-500 dark:text-slate-400">
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-cyan-400 animate-pulse" />
           <span>Engineering Mindset • Clean Code</span>

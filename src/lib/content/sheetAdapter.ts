@@ -175,7 +175,8 @@ function parseProfile(rows: string[][]): ProfileData {
     } else if (label.includes('linkedin')) {
       profile.linkedin_url = vis && val ? sanitizeUrl(val) || undefined : undefined;
     } else if (label.includes('resume')) {
-      profile.resume_url = vis && val ? sanitizeUrl(val) || undefined : undefined;
+      const sanitized = vis && val ? sanitizeUrl(val) : null;
+      profile.resume_url = sanitized || fallbackPortfolioData.profile.resume_url || '/Abhishek_Resume.pdf';
     } else if (label.includes('availability')) {
       profile.availability_text = vis && val ? val : undefined;
     }
@@ -242,8 +243,15 @@ function parseSkills(rows: string[][]): SkillItem[] {
     const group = sanitizeText(row[3]) || 'Other';
     const order = row.length > 4 && row[4] ? parseFloat(row[4]) : idx;
 
-    // Skip description header rows
-    if (label.toLowerCase().includes('technical skills') || label.toLowerCase().includes('one skill per row')) {
+    // Skip description header rows and skill notes
+    const lowerLabel = label.toLowerCase();
+    const lowerVal = val.toLowerCase();
+    if (
+      lowerLabel.includes('technical skills') ||
+      lowerLabel.includes('one skill per row') ||
+      lowerLabel.includes('note') ||
+      lowerVal.includes('reviewed manually')
+    ) {
       continue;
     }
 

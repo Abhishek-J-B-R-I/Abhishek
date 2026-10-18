@@ -2,7 +2,7 @@
   "Profile": [
     {
       "key": "name",
-      "value": "Abhishek",
+      "value": "ABHISHEK so j b",
       "status": "visible",
       "notes": "Edit as needed"
     },
@@ -44,8 +44,8 @@
     },
     {
       "key": "resume_url",
-      "value": "",
-      "status": "hidden",
+      "value": "/Abhishek_Resume.pdf",
+      "status": "visible",
       "notes": "Paste a public resume URL if you want a download link"
     },
     {
@@ -293,7 +293,7 @@
     {
       "experience_id": "vcqru-associate",
       "role": "Associate Software Engineer (Flutter)",
-      "company": "VCQRU",
+      "company": "WSY",
       "location": "Gurugram",
       "start_date": "2025-03",
       "end_date": "Present",
@@ -304,7 +304,7 @@
     {
       "experience_id": "vcqru-associate-api",
       "role": "Associate Software Engineer (Flutter)",
-      "company": "VCQRU",
+      "company": "WSY",
       "location": "Gurugram",
       "start_date": "2025-03",
       "end_date": "Present",
@@ -315,7 +315,7 @@
     {
       "experience_id": "vcqru-associate-state",
       "role": "Associate Software Engineer (Flutter)",
-      "company": "VCQRU",
+      "company": "WSY",
       "location": "Gurugram",
       "start_date": "2025-03",
       "end_date": "Present",
@@ -326,7 +326,7 @@
     {
       "experience_id": "vcqru-intern",
       "role": "Flutter Intern (UI/UX)",
-      "company": "VCQRU",
+      "company": "WSY",
       "location": "Gurugram",
       "start_date": "2024-08",
       "end_date": "2025-03",

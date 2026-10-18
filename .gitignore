@@ -21,3 +21,6 @@ yarn-error.log*
 # Environment variables
 .env*.local
 .env
+
+# Media captures & recordings
+*.mov

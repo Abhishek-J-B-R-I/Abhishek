@@ -2,11 +2,12 @@ import { PortfolioData } from './types';
 
 export const fallbackPortfolioData: PortfolioData = {
   profile: {
-    "name": "Abhishek",
+    "name": "ABHISHEK so j b",
     "headline": "Software Engineer | Flutter & Backend-Integrated Application Development",
     "location": "Gurugram, India",
     "email": "abhishekjbri@gmail.com",
     "phone": "+91 8299398980",
+    "resume_url": "/Abhishek_Resume.pdf",
     "summary": "Software engineer with 2+ years of experience building and maintaining production applications end to end, from UI to REST API and cloud backend integration. Strong foundation in data structures, algorithms, OOP and DBMS, with working knowledge of C/C++, Java and Python. Experienced with real-time data synchronization, client-server communication over HTTP/REST, authentication, and payment and notification workflows. Comfortable owning modules and bug fixes independently, debugging production issues, and collaborating across cross-functional teams. Eager to grow into large-scale distributed systems and networking."
 },
   sections: [
@@ -242,13 +243,6 @@ export const fallbackPortfolioData: PortfolioData = {
         "name": "Antigravity",
         "status": "visible",
         "sort_order": 4
-    },
-    {
-        "skill_id": "skill-33",
-        "group": "AI-assisted Development",
-        "name": "All AI-assisted code is reviewed manually.",
-        "status": "visible",
-        "sort_order": 5
     }
 ],
   skillsByGroup: {
@@ -488,13 +482,6 @@ export const fallbackPortfolioData: PortfolioData = {
             "name": "Antigravity",
             "status": "visible",
             "sort_order": 4
-        },
-        {
-            "skill_id": "skill-33",
-            "group": "AI-assisted Development",
-            "name": "All AI-assisted code is reviewed manually.",
-            "status": "visible",
-            "sort_order": 5
         }
     ]
 },
@@ -502,7 +489,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-1",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -513,7 +500,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-2",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -524,7 +511,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-3",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -535,7 +522,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-4",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -546,7 +533,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-5",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -557,7 +544,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-6",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -568,7 +555,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 1-7",
         "role": "Associate Software Engineer (Flutter)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Mar 2025",
         "end_date": "Present",
@@ -579,7 +566,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 2-1",
         "role": "Flutter Intern (UI/UX)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Aug 2024",
         "end_date": "Mar 2025",
@@ -590,7 +577,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 2-2",
         "role": "Flutter Intern (UI/UX)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Aug 2024",
         "end_date": "Mar 2025",
@@ -601,7 +588,7 @@ export const fallbackPortfolioData: PortfolioData = {
     {
         "experience_id": "VCQRU \u2014 Role 2-3",
         "role": "Flutter Intern (UI/UX)",
-        "company": "VCQRU",
+        "company": "WSY",
         "location": "Gurugram",
         "start_date": "Aug 2024",
         "end_date": "Mar 2025",

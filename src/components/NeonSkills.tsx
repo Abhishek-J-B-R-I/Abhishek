@@ -44,12 +44,16 @@ export function NeonSkills() {
           const shortName = grpName
             .replace('Core Computer Science', 'Core CS')
             .replace('Backend & Networking', 'Backend & APIs')
-            .replace('Application Development', 'App Dev');
+            .replace('Application Development', 'App Dev')
+            .replace('AI-assisted Development', 'AI Tools')
+            .replace('Tools & Practices', 'Tools & DevOps');
           return {
             category: shortName,
             icon: meta.icon,
             iconColor: meta.iconColor,
-            skills: skillsByGroup[grpName].map((s) => s.name),
+            skills: skillsByGroup[grpName]
+              .map((s) => s.name)
+              .filter((name) => !name.toLowerCase().includes('reviewed manually')),
           };
         })
       : [
@@ -84,48 +88,48 @@ export function NeonSkills() {
             skills: ['Flutter', 'BLoC', 'Provider', 'React.js'],
           },
           {
-            category: 'Tools & Practices',
+            category: 'Tools & DevOps',
             icon: Wrench,
             iconColor: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
-            skills: ['Git', 'Version Control', 'Debugging', 'AI-assisted'],
+            skills: ['Git', 'Version Control', 'Debugging', 'Antigravity'],
           },
         ];
 
   const totalSkillsCount = data.skills?.length || 25;
 
   return (
-    <div id="skills" className="neon-card neon-card-purple group rounded-2xl p-3.5 xl:p-4 h-full flex flex-col justify-between transition-all duration-300">
+    <div id="skills" className="neon-card neon-card-purple group rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between transition-all duration-300">
       <div>
         {/* Header */}
-        <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-200 dark:border-slate-800/80">
-          <div className="w-6 h-6 rounded-lg bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-400 group-hover:scale-110 group-hover:border-purple-500 group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20 group-hover:shadow-[0_0_14px_rgba(168,85,247,0.4)] transition-all duration-500">
-            <LayoutGrid className="w-3 h-3" />
+        <div className="flex items-center gap-2 mb-1.5 pb-1 border-b border-slate-200 dark:border-slate-800/80">
+          <div className="w-5 h-5 rounded-lg bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-700 dark:text-purple-400 group-hover:scale-110 group-hover:border-purple-500 group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20 group-hover:shadow-[0_0_14px_rgba(168,85,247,0.4)] transition-all duration-500 shrink-0">
+            <LayoutGrid className="w-2.5 h-2.5" />
           </div>
-          <h2 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white tracking-wide group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors duration-500">
-            Skills
+          <h2 className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white tracking-wide group-hover:text-purple-700 dark:group-hover:text-purple-200 transition-colors duration-500">
+            Technical Skills
           </h2>
         </div>
 
-        {/* Dynamic Category Rows */}
-        <div className="space-y-2">
+        {/* Dynamic Category Rows in 2 Balanced Columns for Complete Space Utilization */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1">
           {skillRows.map((row, idx) => {
             const Icon = row.icon;
             return (
-              <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 group/row">
-                <div className="flex items-center gap-1.5 w-auto sm:w-28 shrink-0">
-                  <div className={`w-4 h-4 rounded-md border flex items-center justify-center ${row.iconColor} group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-2.5 h-2.5" />
+              <div key={idx} className="flex flex-col gap-0.5 py-0.5 border-b sm:border-b-0 border-slate-100 dark:border-slate-800/40 group/row">
+                <div className="flex items-center gap-1.5">
+                  <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${row.iconColor} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                    <Icon className="w-2 h-2" />
                   </div>
-                  <span className="text-[10.5px] font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-white transition-colors duration-300 whitespace-nowrap">
+                  <span className="text-[10px] font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-white transition-colors duration-300">
                     {row.category}
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-1 flex-1">
+                <div className="flex flex-wrap gap-1 min-w-0">
                   {row.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="px-2 py-0.5 rounded-md bg-slate-50 hover:bg-indigo-50 dark:bg-slate-900 border border-slate-200/90 hover:border-indigo-300 dark:border-slate-800 text-[9.5px] font-medium text-slate-700 hover:text-indigo-700 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:bg-cyan-500/20 dark:hover:text-cyan-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-default"
+                      className="px-1.5 py-0.2 rounded bg-slate-50 hover:bg-indigo-50 dark:bg-slate-900 border border-slate-200/90 hover:border-indigo-300 dark:border-slate-800 text-[9px] font-medium text-slate-700 hover:text-indigo-700 dark:text-slate-300 dark:hover:border-cyan-400 dark:hover:bg-cyan-500/20 dark:hover:text-cyan-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-default"
                     >
                       {skill}
                     </span>
@@ -137,8 +141,8 @@ export function NeonSkills() {
         </div>
       </div>
 
-      <div className="pt-1.5 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[9px] text-slate-500 dark:text-slate-400 font-mono">
-        <span>Frameworks &amp; Tooling</span>
+      <div className="pt-1.5 mt-1.5 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-1 text-[8.5px] text-slate-500 dark:text-slate-400 font-mono">
+        <span>✦ All AI-assisted code is verified manually</span>
         <span className="text-purple-700 dark:text-purple-400 group-hover:text-purple-600 dark:group-hover:text-purple-300 font-bold transition-all duration-500">{totalSkillsCount}+ Tech Verified</span>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { triggerResumeDownload, getAssetUrl } from '@/lib/downloadResume';
 
 export function Header() {
   const { data } = usePortfolio();
@@ -117,10 +118,14 @@ export function Header() {
 
             {/* Resume Button */}
             <a
-              href={data.profile.resume_url || '#contact'}
-              target={data.profile.resume_url ? '_blank' : '_self'}
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-md shadow-indigo-600/25 transition-all duration-200"
+              href={getAssetUrl(data.profile.resume_url || '/Abhishek_Resume.pdf')}
+              download="Abhishek_Resume.pdf"
+              onClick={(e) => {
+                e.preventDefault();
+                triggerResumeDownload(data);
+              }}
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-md shadow-indigo-600/25 transition-all duration-200 cursor-pointer"
+              title="Download Abhishek's Resume (PDF)"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download Resume</span>
@@ -159,8 +164,14 @@ export function Header() {
               ))}
               <div className="pt-3 mt-2 border-t border-border">
                 <a
-                  href={data.profile.resume_url || '#contact'}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md"
+                  href={getAssetUrl(data.profile.resume_url || '/Abhishek_Resume.pdf')}
+                  download="Abhishek_Resume.pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    triggerResumeDownload(data);
+                  }}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md cursor-pointer"
+                  title="Download Abhishek's Resume (PDF)"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download Resume</span>

@@ -26,6 +26,11 @@ export function sanitizeUrl(url?: string | null): string | null {
     return null;
   }
 
+  // Allow safe root-relative URLs (e.g. /Abhishek_Resume.pdf, /images/...)
+  if (trimmed.startsWith('/') && !trimmed.startsWith('//')) {
+    return trimmed;
+  }
+
   // Allow http:// and https://
   try {
     const parsed = new URL(trimmed);
