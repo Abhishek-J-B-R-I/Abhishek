@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-neon-bg text-white selection:bg-purple-600 selection:text-white ambient-glow xl:min-h-screen overflow-y-auto select-none">
+    <div className="min-h-screen w-full bg-slate-50 dark:bg-neon-bg text-slate-900 dark:text-white selection:bg-purple-600 selection:text-white ambient-glow xl:min-h-screen overflow-y-auto select-none transition-colors duration-300">
       <div className="w-full max-w-[1680px] mx-auto min-h-screen p-2.5 sm:p-3.5 xl:p-4 flex flex-col justify-between gap-3">
         {/* Top Header Navbar */}
         <TopNavbar />

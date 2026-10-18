@@ -40,14 +40,39 @@ function isVisible(val: unknown): boolean {
 }
 
 /**
- * Fetch Google Sheet tab via JSONP (in browser) or standard fetch (in Node/SSR)
- * JSONP completely bypasses browser CORS restrictions on GitHub Pages!
+ * Fetch Google Sheet tab via direct fetch (with cache: 'no-store') or JSONP fallback
+ * Supports direct GID (grid ID) or sheet tab name for 100% reliability!
  */
-function fetchGvizTab(spreadsheetId: string, sheetName: string): Promise<GvizResponse | null> {
-  return new Promise((resolve) => {
-    // If in browser, use JSONP for 100% CORS-proof client fetching
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      const callbackName = `gviz_cb_${sheetName.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+async function fetchGvizTab(
+  spreadsheetId: string,
+  sheetName: string,
+  gid?: string
+): Promise<GvizResponse | null> {
+  const queryParam = gid ? `gid=${gid}` : `sheet=${encodeURIComponent(sheetName)}`;
+  const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?${queryParam}&t=${Date.now()}`;
+
+  // 1. Try standard fast fetch (works in Node and modern browsers with CORS)
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (res.ok) {
+      const text = await res.text();
+      const match = text.match(/setResponse\(([\s\S]*)\);/);
+      if (match && match[1]) {
+        try {
+          return JSON.parse(match[1]);
+        } catch {
+          // If parse fails, fall through to JSONP
+        }
+      }
+    }
+  } catch {
+    // If fetch threw (e.g. CORS restriction), fall through to JSONP
+  }
+
+  // 2. If running in browser and direct fetch failed, use JSONP
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    return new Promise((resolve) => {
+      const callbackName = `gviz_cb_${(gid || sheetName).replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
       const script = document.createElement('script');
       let isResolved = false;
 
@@ -59,7 +84,6 @@ function fetchGvizTab(spreadsheetId: string, sheetName: string): Promise<GvizRes
         }
       };
 
-      // Set timeout in case sheet is inaccessible
       const timer = setTimeout(() => {
         if (!isResolved) {
           isResolved = true;
@@ -78,7 +102,7 @@ function fetchGvizTab(spreadsheetId: string, sheetName: string): Promise<GvizRes
         }
       };
 
-      script.src = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=responseHandler:${callbackName}&sheet=${encodeURIComponent(sheetName)}&t=${Date.now()}`;
+      script.src = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=responseHandler:${callbackName}&${queryParam}&t=${Date.now()}`;
       script.onerror = () => {
         if (!isResolved) {
           isResolved = true;
@@ -89,27 +113,22 @@ function fetchGvizTab(spreadsheetId: string, sheetName: string): Promise<GvizRes
       };
 
       document.head.appendChild(script);
-      return;
-    }
+    });
+  }
 
-    // If running in Node.js / SSR
-    const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?sheet=${encodeURIComponent(sheetName)}&t=${Date.now()}`;
-    fetch(url, { cache: 'no-store' })
-      .then((res) => res.text())
-      .then((text) => {
-        const match = text.match(/setResponse\(([\s\S]*)\);/);
-        if (match && match[1]) {
-          try {
-            resolve(JSON.parse(match[1]));
-          } catch {
-            resolve(null);
-          }
-        } else {
-          resolve(null);
-        }
-      })
-      .catch(() => resolve(null));
-  });
+  return null;
+}
+
+/**
+ * Fetch rows for a Google Sheet tab directly via GViz API (supports permanent numeric GID)
+ */
+async function fetchTabRows(
+  spreadsheetId: string,
+  sheetName: string,
+  gid?: string
+): Promise<string[][]> {
+  const gviz = await fetchGvizTab(spreadsheetId, sheetName, gid);
+  return extractRows(gviz);
 }
 
 /**
@@ -483,7 +502,7 @@ function groupSkills(skills: SkillItem[]): Record<string, SkillItem[]> {
  * Load complete portfolio dataset directly from Abhishek's Google Sheet
  */
 export async function loadPortfolioData(): Promise<PortfolioData> {
-  const { enabled, spreadsheetId, tabs } = sheetConfig;
+  const { enabled, spreadsheetId, tabs, gids } = sheetConfig;
 
   if (!enabled || !spreadsheetId) {
     return {
@@ -495,27 +514,20 @@ export async function loadPortfolioData(): Promise<PortfolioData> {
 
   try {
     const [
-      profileGviz,
-      sectionsGviz,
-      skillsGviz,
-      experienceGviz,
-      projectsGviz,
-      educationGviz,
+      profileRows,
+      sectionsRows,
+      skillsRows,
+      experienceRows,
+      projectsRows,
+      educationRows,
     ] = await Promise.all([
-      fetchGvizTab(spreadsheetId, tabs.profile),
-      fetchGvizTab(spreadsheetId, tabs.sections),
-      fetchGvizTab(spreadsheetId, tabs.skills),
-      fetchGvizTab(spreadsheetId, tabs.experience),
-      fetchGvizTab(spreadsheetId, tabs.projects),
-      fetchGvizTab(spreadsheetId, tabs.education),
+      fetchTabRows(spreadsheetId, tabs.profile, gids?.profile),
+      fetchTabRows(spreadsheetId, tabs.sections, gids?.sections),
+      fetchTabRows(spreadsheetId, tabs.skills, gids?.skills),
+      fetchTabRows(spreadsheetId, tabs.experience, gids?.experience),
+      fetchTabRows(spreadsheetId, tabs.projects, gids?.projects),
+      fetchTabRows(spreadsheetId, tabs.education, gids?.education),
     ]);
-
-    const profileRows = extractRows(profileGviz);
-    const sectionsRows = extractRows(sectionsGviz);
-    const skillsRows = extractRows(skillsGviz);
-    const experienceRows = extractRows(experienceGviz);
-    const projectsRows = extractRows(projectsGviz);
-    const educationRows = extractRows(educationGviz);
 
     const profile = profileRows.length > 0 ? parseProfile(profileRows) : fallbackPortfolioData.profile;
     const sections = sectionsRows.length > 0 ? parseSections(sectionsRows) : fallbackPortfolioData.sections;
