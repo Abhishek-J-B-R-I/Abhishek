@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ArrowRight, Mail, Briefcase, FolderGit2, GraduationCap, MapPin } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { getAssetUrl } from '@/lib/assets';
 
 export function Hero() {
   const { data } = usePortfolio();
@@ -120,7 +121,7 @@ export function Hero() {
               {/* Mockup Artwork Container */}
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xs shadow-card hover:shadow-cardHover transition-all duration-300">
                 <Image
-                  src="/images/hero-art.png"
+                  src={getAssetUrl('/images/hero-art.png')}
                   alt="Abhishek - Flutter Software Engineer"
                   width={900}
                   height={650}

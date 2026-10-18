@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { getAssetUrl } from '@/lib/assets';
 
 const projectImages: Record<string, string> = {
   'loyalty-rewards': '/images/project-loyalty.png',
@@ -55,7 +56,7 @@ export function Projects() {
                   <div className="w-24 sm:w-28 shrink-0 flex items-center justify-center">
                     <div className="relative w-full aspect-[9/14] rounded-xl overflow-hidden shadow-md border border-slate-200/60 dark:border-slate-700">
                       <Image
-                        src={imageSrc}
+                        src={getAssetUrl(imageSrc)}
                         alt={project.title}
                         fill
                         className="object-cover object-center"

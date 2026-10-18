@@ -263,7 +263,7 @@ export function FocusedSectionView({ activeTab, onBackToAll }: FocusedSectionVie
                   <div>
                     <div className="w-full aspect-video rounded-xl overflow-hidden relative mb-3 bg-slate-950 border border-indigo-500/30 shadow-lg group-hover:scale-[1.02] transition-transform duration-300">
                       <Image
-                        src="/images/mockup-loyalty.jpg"
+                        src={getAssetUrl('/images/mockup-loyalty.jpg')}
                         alt="Loyalty Rewards App 4K UI Mockup"
                         fill
                         priority
@@ -301,7 +301,7 @@ export function FocusedSectionView({ activeTab, onBackToAll }: FocusedSectionVie
                   <div>
                     <div className="w-full aspect-video rounded-xl overflow-hidden relative mb-3 bg-slate-950 border border-cyan-500/30 shadow-lg group-hover:scale-[1.02] transition-transform duration-300">
                       <Image
-                        src="/images/mockup-chat.jpg"
+                        src={getAssetUrl('/images/mockup-chat.jpg')}
                         alt="Real-Time Chat App 4K UI Mockup"
                         fill
                         priority
@@ -339,7 +339,7 @@ export function FocusedSectionView({ activeTab, onBackToAll }: FocusedSectionVie
                   <div>
                     <div className="w-full aspect-video rounded-xl overflow-hidden relative mb-3 bg-slate-950 border border-amber-500/30 shadow-lg group-hover:scale-[1.02] transition-transform duration-300">
                       <Image
-                        src="/images/mockup-weather.jpg"
+                        src={getAssetUrl('/images/mockup-weather.jpg')}
                         alt="Weather Forecast App 4K UI Mockup"
                         fill
                         priority

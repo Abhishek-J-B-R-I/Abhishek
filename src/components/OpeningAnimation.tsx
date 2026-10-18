@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { ArrowRight, Check, Code2, Database, Smartphone } from 'lucide-react';
+import { getAssetUrl } from '@/lib/assets';
 
 interface OpeningAnimationProps {
   onComplete?: () => void;
@@ -298,12 +299,21 @@ export function OpeningAnimation({ onComplete }: OpeningAnimationProps) {
             }`}
           >
             <div className="relative w-36 h-32 sm:w-48 sm:h-40 flex items-center justify-center">
+              {/* Glowing vector neon monogram anchor so the screen is NEVER blank even before image decode */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                <span className="text-6xl sm:text-7xl font-black bg-gradient-to-tr from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent opacity-90 filter drop-shadow-[0_0_30px_rgba(6,182,212,0.85)]">
+                  A
+                </span>
+              </div>
               <Image
-                src="/opening_frames/logo-transparent.png"
+                src={getAssetUrl('/opening_frames/logo-transparent.png')}
                 alt="3D Crystalline Neon A Logo"
                 fill
                 priority
-                className="object-contain filter brightness-110 drop-shadow-[0_0_25px_rgba(99,102,241,0.9)]"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+                className="object-contain filter brightness-110 drop-shadow-[0_0_25px_rgba(99,102,241,0.9)] z-10"
                 sizes="(max-width: 768px) 144px, 192px"
               />
             </div>
@@ -418,7 +428,7 @@ export function OpeningAnimation({ onComplete }: OpeningAnimationProps) {
           <div className="animate-float-phone-left relative w-24 sm:w-36 h-40 sm:h-56 rounded-2xl sm:rounded-3xl border-2 border-slate-700 bg-slate-950 p-1 shadow-xl shadow-cyan-500/20">
             <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden relative bg-slate-900">
               <Image
-                src="/images/phone-screen-chat.png"
+                src={getAssetUrl('/images/phone-screen-chat.png')}
                 alt="Real-Time Chat App"
                 fill
                 priority
@@ -435,7 +445,7 @@ export function OpeningAnimation({ onComplete }: OpeningAnimationProps) {
           <div className="animate-float-phone-center relative w-28 sm:w-44 h-48 sm:h-64 rounded-2xl sm:rounded-3xl border-2 border-indigo-400 bg-slate-950 p-1.5 shadow-2xl shadow-indigo-500/40 z-20">
             <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden relative bg-slate-900">
               <Image
-                src="/images/phone-screen-loyalty.png"
+                src={getAssetUrl('/images/phone-screen-loyalty.png')}
                 alt="Loyalty Rewards App"
                 fill
                 priority
@@ -452,7 +462,7 @@ export function OpeningAnimation({ onComplete }: OpeningAnimationProps) {
           <div className="animate-float-phone-right relative w-24 sm:w-36 h-40 sm:h-56 rounded-2xl sm:rounded-3xl border-2 border-slate-700 bg-slate-950 p-1 shadow-xl shadow-amber-500/20">
             <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden relative bg-slate-900">
               <Image
-                src="/images/phone-screen-weather.png"
+                src={getAssetUrl('/images/phone-screen-weather.png')}
                 alt="Weather Forecast App"
                 fill
                 priority
